@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+
+# Competition data: downloaded by src/parkinson/data.py, not redistributed here
+data/*.csv
+submissions/
+
+# Never commit credentials (Skore Hub, Kaggle)
+.skore
+.env
+kaggle.json
