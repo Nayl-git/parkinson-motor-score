@@ -1,0 +1,14 @@
+{
+  "visits": 44590,
+  "patients": 5576,
+  "dummy_mean": 16.502070355964378,
+  "ridge_raw": 10.599247763251018,
+  "hgbr_raw": 7.753998614173589,
+  "features": 48,
+  "honest_single_seed": 4.662785286290326,
+  "ensemble_seeds": 10,
+  "honest_ensemble": 4.642541749835272,
+  "test_prediction_mean": 36.6444158885061,
+  "train_target_mean": 37.47152724826194,
+  "minutes": 17.0
+}
