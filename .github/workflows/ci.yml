@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Lint
+        run: ruff check . && ruff format --check .
+      - name: Unit tests
+        run: pytest -q
+      - name: Download the competition data (checked by SHA-256)
+        run: python src/parkinson/data.py
+      - name: Replay the model progression (1 seed to stay fast)
+        run: python experiments/run_all.py --seeds 1
+      - name: Check the honest model still reaches its score
+        run: python -c "import json; m = json.load(open('results/metrics.json')); assert m['honest_ensemble'] < 4.8, m"
